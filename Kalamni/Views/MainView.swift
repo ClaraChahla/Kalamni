@@ -8,12 +8,18 @@
 import SwiftUI
 
 struct MainView: View {
+    @StateObject var viewModel = MainViewViewModel()
+
     var body: some View {
         VStack {
             Image(systemName: "cat")
                 .imageScale(.large)
                 .foregroundStyle(.tint)
             Text("Kalamni")
+            
+            Button("Talk") {
+                viewModel.talk()
+            }
         }
         .padding()
     }

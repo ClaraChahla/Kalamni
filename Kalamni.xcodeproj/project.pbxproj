@@ -8,17 +8,26 @@
 
 /* Begin PBXBuildFile section */
 		7A863A442B816765006C669D /* KalamniApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A863A432B816765006C669D /* KalamniApp.swift */; };
-		7A863A462B816765006C669D /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A863A452B816765006C669D /* ContentView.swift */; };
+		7A863A462B816765006C669D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A863A452B816765006C669D /* MainView.swift */; };
 		7A863A482B816768006C669D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A863A472B816768006C669D /* Assets.xcassets */; };
 		7A863A4B2B816768006C669D /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A863A4A2B816768006C669D /* Preview Assets.xcassets */; };
+		7A863A562B8168C8006C669D /* MainViewViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A863A552B8168C8006C669D /* MainViewViewModel.swift */; };
+		7A863A582B816938006C669D /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A863A572B816938006C669D /* Extensions.swift */; };
+		7A863A5B2B816B96006C669D /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 7A863A5A2B816B96006C669D /* FirebaseAuth */; };
+		7A863A5D2B816B96006C669D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 7A863A5C2B816B96006C669D /* FirebaseFirestore */; };
+		7A863A5F2B816B96006C669D /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7A863A5E2B816B96006C669D /* FirebaseFirestoreSwift */; };
+		7A863A612B816D1D006C669D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7A863A602B816D1D006C669D /* GoogleService-Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7A863A402B816765006C669D /* Kalamni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalamni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A863A432B816765006C669D /* KalamniApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalamniApp.swift; sourceTree = "<group>"; };
-		7A863A452B816765006C669D /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		7A863A452B816765006C669D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
 		7A863A472B816768006C669D /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7A863A4A2B816768006C669D /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		7A863A552B8168C8006C669D /* MainViewViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewViewModel.swift; sourceTree = "<group>"; };
+		7A863A572B816938006C669D /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		7A863A602B816D1D006C669D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -26,6 +35,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7A863A5B2B816B96006C669D /* FirebaseAuth in Frameworks */,
+				7A863A5D2B816B96006C669D /* FirebaseFirestore in Frameworks */,
+				7A863A5F2B816B96006C669D /* FirebaseFirestoreSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -51,9 +63,10 @@
 		7A863A422B816765006C669D /* Kalamni */ = {
 			isa = PBXGroup;
 			children = (
-				7A863A432B816765006C669D /* KalamniApp.swift */,
-				7A863A452B816765006C669D /* ContentView.swift */,
-				7A863A472B816768006C669D /* Assets.xcassets */,
+				7A863A512B81681C006C669D /* Other */,
+				7A863A522B81683B006C669D /* Models */,
+				7A863A542B816897006C669D /* ViewModels */,
+				7A863A532B81685B006C669D /* Views */,
 				7A863A492B816768006C669D /* Preview Content */,
 			);
 			path = Kalamni;
@@ -65,6 +78,40 @@
 				7A863A4A2B816768006C669D /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		7A863A512B81681C006C669D /* Other */ = {
+			isa = PBXGroup;
+			children = (
+				7A863A472B816768006C669D /* Assets.xcassets */,
+				7A863A602B816D1D006C669D /* GoogleService-Info.plist */,
+				7A863A432B816765006C669D /* KalamniApp.swift */,
+				7A863A572B816938006C669D /* Extensions.swift */,
+			);
+			path = Other;
+			sourceTree = "<group>";
+		};
+		7A863A522B81683B006C669D /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		7A863A532B81685B006C669D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7A863A452B816765006C669D /* MainView.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		7A863A542B816897006C669D /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				7A863A552B8168C8006C669D /* MainViewViewModel.swift */,
+			);
+			path = ViewModels;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +130,11 @@
 			dependencies = (
 			);
 			name = Kalamni;
+			packageProductDependencies = (
+				7A863A5A2B816B96006C669D /* FirebaseAuth */,
+				7A863A5C2B816B96006C669D /* FirebaseFirestore */,
+				7A863A5E2B816B96006C669D /* FirebaseFirestoreSwift */,
+			);
 			productName = Kalamni;
 			productReference = 7A863A402B816765006C669D /* Kalamni.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +163,9 @@
 				Base,
 			);
 			mainGroup = 7A863A372B816765006C669D;
+			packageReferences = (
+				7A863A592B816B96006C669D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = 7A863A412B816765006C669D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -127,6 +182,7 @@
 			files = (
 				7A863A4B2B816768006C669D /* Preview Assets.xcassets in Resources */,
 				7A863A482B816768006C669D /* Assets.xcassets in Resources */,
+				7A863A612B816D1D006C669D /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -137,8 +193,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7A863A462B816765006C669D /* ContentView.swift in Sources */,
+				7A863A462B816765006C669D /* MainView.swift in Sources */,
 				7A863A442B816765006C669D /* KalamniApp.swift in Sources */,
+				7A863A562B8168C8006C669D /* MainViewViewModel.swift in Sources */,
+				7A863A582B816938006C669D /* Extensions.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -274,6 +332,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Kalamni/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kalamni;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -302,6 +361,7 @@
 				DEVELOPMENT_ASSET_PATHS = "\"Kalamni/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_CFBundleDisplayName = Kalamni;
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -342,6 +402,35 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7A863A592B816B96006C669D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.21.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7A863A5A2B816B96006C669D /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A863A592B816B96006C669D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		7A863A5C2B816B96006C669D /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A863A592B816B96006C669D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		7A863A5E2B816B96006C669D /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7A863A592B816B96006C669D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 7A863A382B816765006C669D /* Project object */;
 }
