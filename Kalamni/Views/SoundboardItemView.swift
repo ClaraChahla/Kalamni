@@ -9,7 +9,7 @@ import SwiftUI
 
 struct SoundboardItemView: View {
     @StateObject var viewModel = SoundboardItemViewViewModel()
-    let item: SoundboardItem
+    @State var item: SoundboardItem
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
@@ -21,7 +21,7 @@ struct SoundboardItemView: View {
                 .font(.caption)
                 .frame(width:120, height: 210)
             Button {
-                viewModel.toggleIsFavorite(item: item)
+                viewModel.toggleIsFavorite(item: &item)
             } label: {
                 Image(systemName: item.isFavorite ? "star.fill" : "star")
                     .foregroundColor(.yellow)
