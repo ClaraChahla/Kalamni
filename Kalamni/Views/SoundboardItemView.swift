@@ -14,12 +14,14 @@ struct SoundboardItemView: View {
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.cyan)
+                .foregroundColor(.teal)
                 .frame(width:120, height: 120)
             Text(item.textEnglish)
-                .foregroundColor(.black)
-                .font(.caption)
+                .foregroundColor(.white)
+                .font(.system(size: 16))
                 .frame(width:120, height: 210)
+                .shadow(color: .black, radius: 1)
+                .bold()
             Button {
                 viewModel.toggleIsFavorite(item: &item)
             } label: {
@@ -37,7 +39,7 @@ struct SoundboardItemView: View {
         id:"123",
         image: "image dir",
         category: "category",
-        textEnglish: "Test English",
+        textEnglish: "Test Text",
         textArabic: "Test Arabic",
         isFavorite: false
     ))

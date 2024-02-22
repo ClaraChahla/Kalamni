@@ -6,3 +6,11 @@
 //
 
 import Foundation
+
+class MessageViewViewModel: ObservableObject {
+    private let userID: String
+
+    init(userID: String) {
+        self.userID = userID
+    }
+}

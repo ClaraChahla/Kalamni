@@ -10,15 +10,12 @@ import Foundation
 
 class SoundboardViewViewModel: ObservableObject {
     let synthesizer = AVSpeechSynthesizer()
-    private let userID: String
     
-    init(userID: String) {
-        self.userID = userID
-    }
+    init(){}
     
     func talk() {
         var utterance = AVSpeechUtterance(string: "Hello World")
-        utterance.voice = AVSpeechSynthesisVoice(identifier: "com.apple.ttsbundle.Samantha-compact")
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         
         synthesizer.speak(utterance)
 

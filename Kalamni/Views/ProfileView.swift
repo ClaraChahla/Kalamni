@@ -13,7 +13,7 @@ struct ProfileView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HeaderView(title: "Profile", subtitle: "", angle: 10, background: .purple)
+                HeaderView(title: "Profile", subtitle: "", angle: 10, background: .indigo)
 
                 if let user = viewModel.user {
                     profile(user: user)
@@ -34,7 +34,7 @@ struct ProfileView: View {
         Image(systemName: "person.circle")
             .resizable()
             .aspectRatio(contentMode: .fit)
-            .foregroundColor(.blue)
+            .foregroundColor(.indigo)
             .frame(width:125, height: 125)
             .padding()
         

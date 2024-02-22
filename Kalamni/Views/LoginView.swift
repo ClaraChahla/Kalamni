@@ -13,7 +13,7 @@ struct LoginView: View {
     var body: some View {
         NavigationView {
             VStack {
-                HeaderView(title: "Kalamni", subtitle: "Communication Tool", angle: 10, background: .pink)
+                HeaderView(title: "Kalamni", subtitle: "Communication Tool", angle: 10, background: .blue)
                 
                 Form {
                     if !viewModel.errorMessage.isEmpty {

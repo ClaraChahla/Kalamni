@@ -21,11 +21,11 @@ struct MainView: View {
     @ViewBuilder
     var accountView: some View {
         TabView {
-            SoundboardView(userID: viewModel.currentUserId)
+            SoundboardView()
                 .tabItem {
                     Label("Soundboard", systemImage: "speaker.wave.3")
                 }
-            MessageView()
+            MessageView(userID: viewModel.currentUserId)
                 .tabItem {
                     Label("Messages", systemImage: "bubble")
                 }

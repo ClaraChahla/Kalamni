@@ -21,7 +21,7 @@ struct RegisterView: View {
 
                 SecureField("Password", text: $viewModel.password).textFieldStyle(DefaultTextFieldStyle())
 
-                TLButton(title: "Create Account", background: .green) {
+                TLButton(title: "Create Account", background: .orange) {
                     viewModel.register()
                 }
             }
