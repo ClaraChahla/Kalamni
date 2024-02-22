@@ -31,7 +31,11 @@ struct ProfileView: View {
     
     @ViewBuilder
     func profile(user: User) -> some View {
-        Image(systemName: "person.circle").resizable().aspectRatio(contentMode: .fit).foregroundColor(.blue).frame(width:125, height: 125)
+        Image(systemName: "person.circle")
+            .resizable()
+            .aspectRatio(contentMode: .fit)
+            .foregroundColor(.blue)
+            .frame(width:125, height: 125)
             .padding()
         
         VStack(alignment: .leading) {

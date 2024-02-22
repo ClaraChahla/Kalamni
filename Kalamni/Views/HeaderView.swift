@@ -15,14 +15,24 @@ struct HeaderView: View {
     
     var body: some View {
         ZStack {
-            RoundedRectangle(cornerRadius: 0).foregroundColor(background).rotationEffect(Angle(degrees: angle))
+            RoundedRectangle(cornerRadius: 0)
+                .foregroundColor(background)
+                .rotationEffect(Angle(degrees: angle))
             
             VStack {
-                Text(title).font(.system(size: 50)).foregroundColor(Color.white).bold()
-                Text(subtitle).font(.system(size: 30)).foregroundColor(Color.white)
-            }.padding(.top, 30)
+                Text(title)
+                    .font(.system(size: 50))
+                    .foregroundColor(Color.white)
+                    .bold()
+                Text(subtitle)
+                    .font(.system(size: 30))
+                    .foregroundColor(Color.white)
+            }
+            .padding(.top, 30)
             
-        }.frame(width: UIScreen.main.bounds.width * 3, height: 300).offset(y: -100)
+        }
+        .frame(width: UIScreen.main.bounds.width * 3, height: 300)
+        .offset(y: -100)
     }
 }
 

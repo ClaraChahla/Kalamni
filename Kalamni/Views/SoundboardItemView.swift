@@ -9,7 +9,6 @@ import SwiftUI
 
 struct SoundboardItemView: View {
     @StateObject var viewModel = SoundboardItemViewViewModel()
-    
     let item: SoundboardItem
     
     var body: some View {
@@ -19,14 +18,15 @@ struct SoundboardItemView: View {
                 .frame(width:120, height: 120)
             Text(item.textEnglish)
                 .foregroundColor(.black)
-                .font(.body)
-                .frame(width:120, height: 260)
+                .font(.caption)
+                .frame(width:120, height: 210)
             Button {
                 viewModel.toggleIsFavorite(item: item)
             } label: {
                 Image(systemName: item.isFavorite ? "star.fill" : "star")
                     .foregroundColor(.yellow)
                     .font(.system(size: 25))
+                    .bold()
             }
         }
     }
@@ -36,6 +36,7 @@ struct SoundboardItemView: View {
     SoundboardItemView(item: .init(
         id:"123",
         image: "image dir",
+        category: "category",
         textEnglish: "Test English",
         textArabic: "Test Arabic",
         isFavorite: false
