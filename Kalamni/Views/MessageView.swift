@@ -9,7 +9,18 @@ import SwiftUI
 
 struct MessageView: View {
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                HeaderView(title: "Messages", subtitle: "", angle: 10, background: .blue)
+                Image(systemName: "mail")
+                    .imageScale(.large)
+                    .foregroundStyle(.tint)
+                Text("No Messages")
+                Spacer()
+            }
+        }
+        .padding(.bottom, 50)
+
     }
 }
 

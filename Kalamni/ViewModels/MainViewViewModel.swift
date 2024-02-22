@@ -5,22 +5,21 @@
 //  Created by csuftitan on 2/17/24.
 //
 
-import AVFoundation
+import FirebaseAuth
 import Foundation
 
-
-class MainViewViewModel: ObservableObject {
-    let synthesizer = AVSpeechSynthesizer()
-
+class MainViewModel: ObservableObject {
+    @Published var currentUserId: String = ""
+    private var handler: AuthStateDidChangeListenerHandle?
+    
     init() {
-        talk()
+        self.handler = Auth.auth().addStateDidChangeListener { [weak self] _, user in DispatchQueue.main.async {
+                self?.currentUserId = user?.uid ?? ""
+            }
+        }
     }
     
-    func talk() {
-        let utterance = AVSpeechUtterance(string: "The quick brown fox jumped over the lazy dog.")
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-
-        synthesizer.speak(utterance)
-        print("test from talk()")
+    public var isSignedIn: Bool {
+        return Auth.auth().currentUser != nil
     }
 }

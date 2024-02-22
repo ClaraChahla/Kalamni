@@ -8,11 +8,36 @@
 import SwiftUI
 
 struct SoundboardItemView: View {
+    @StateObject var viewModel = SoundboardItemViewViewModel()
+    
+    let item: SoundboardItem
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        ZStack(alignment: .bottomTrailing) {
+            RoundedRectangle(cornerRadius: 10)
+                .foregroundColor(.cyan)
+                .frame(width:120, height: 120)
+            Text(item.textEnglish)
+                .foregroundColor(.black)
+                .font(.body)
+                .frame(width:120, height: 260)
+            Button {
+                viewModel.toggleIsFavorite(item: item)
+            } label: {
+                Image(systemName: item.isFavorite ? "star.fill" : "star")
+                    .foregroundColor(.yellow)
+                    .font(.system(size: 25))
+            }
+        }
     }
 }
 
 #Preview {
-    SoundboardItemView()
+    SoundboardItemView(item: .init(
+        id:"123",
+        image: "image dir",
+        textEnglish: "Test English",
+        textArabic: "Test Arabic",
+        isFavorite: false
+    ))
 }

@@ -8,20 +8,33 @@
 import SwiftUI
 
 struct MainView: View {
-    @StateObject var viewModel = MainViewViewModel()
-
+    @Environment(\.modelContext) var context
+    @StateObject var viewModel = MainViewModel()
+    
     var body: some View {
-        VStack {
-            Image(systemName: "cat")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Kalamni")
-            
-            Button("Talk") {
-                viewModel.talk()
-            }
+        if viewModel.isSignedIn, !viewModel.currentUserId.isEmpty {
+            accountView
+        } else {
+            LoginView()
         }
-        .padding()
+    }
+    
+    @ViewBuilder
+    var accountView: some View {
+        TabView {
+            SoundboardView(userID: viewModel.currentUserId)
+                .tabItem {
+                    Label("Soundboard", systemImage: "speaker.wave.3")
+                }
+            MessageView()
+                .tabItem {
+                    Label("Messages", systemImage: "bubble")
+                }
+            ProfileView()
+                .tabItem {
+                    Label("Profile", systemImage: "person.circle")
+                }
+        }
     }
 }
 

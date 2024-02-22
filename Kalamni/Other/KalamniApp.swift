@@ -7,6 +7,7 @@
 
 import FirebaseCore
 import SwiftUI
+import SwiftData
 
 @main
 struct KalamniApp: App {
@@ -18,5 +19,6 @@ struct KalamniApp: App {
         WindowGroup {
             MainView()
         }
+        .modelContainer(for: SoundboardItem.self)
     }
 }
