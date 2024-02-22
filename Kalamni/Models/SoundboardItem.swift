@@ -6,10 +6,8 @@
 //
 
 import Foundation
-import SwiftData
 
-@Model
-class SoundboardItem {
+struct SoundboardItem {
     let id: String
     let image: String
     let textEnglish: String
@@ -24,7 +22,7 @@ class SoundboardItem {
         self.isFavorite = isFavorite
     }
     
-    func setFavorite(_ state: Bool) {
+    mutating func setFavorite(_ state: Bool) {
         isFavorite = state
     }
 }

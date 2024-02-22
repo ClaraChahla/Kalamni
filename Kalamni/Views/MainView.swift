@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct MainView: View {
-    @Environment(\.modelContext) var context
     @StateObject var viewModel = MainViewModel()
     
     var body: some View {
