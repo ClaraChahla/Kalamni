@@ -10,12 +10,13 @@ import SwiftUI
 struct SoundboardItemView: View {
     @StateObject var viewModel = SoundboardItemViewViewModel()
     @State var item: SoundboardItem
+    @State var language: String
     
     var body: some View {
         ZStack(alignment: .bottomTrailing) {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(.teal)
-            Text(item.textEnglish)
+            Text(language == "en-US" ? item.textEnglish : item.textArabic)
                 .foregroundColor(.white)
                 .font(.system(size: 16))
                 .shadow(color: .black, radius: 1)
@@ -29,7 +30,7 @@ struct SoundboardItemView: View {
                     .foregroundColor(.yellow)
                     .font(.system(size: 25))
                     .bold()
-                    .frame(maxWidth: 25, maxHeight: 25)
+                    .frame(maxWidth: 30, maxHeight: 30)
             }
         }
     }
@@ -40,8 +41,8 @@ struct SoundboardItemView: View {
         id:"123",
         image: "image dir",
         category: "category",
-        textEnglish: "Test Text",
+        textEnglish: "Test English",
         textArabic: "Test Arabic",
         isFavorite: false
-    ))
+    ), language: "en-US")
 }

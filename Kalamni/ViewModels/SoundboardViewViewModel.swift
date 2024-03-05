@@ -13,15 +13,13 @@ class SoundboardViewViewModel: ObservableObject {
     
     init(){}
     
-    func talk() {
-        var utterance = AVSpeechUtterance(string: "Hello World")
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+    func talk(text:String, language:String) {
+        var utterance = AVSpeechUtterance(string: text)
+        utterance.voice = AVSpeechSynthesisVoice(language: language)
         
-        synthesizer.speak(utterance)
-
-        utterance = AVSpeechUtterance(string: "مرحبا بالعالم")
-        utterance.voice = AVSpeechSynthesisVoice(language: "ar-SA")
-
         synthesizer.speak(utterance)
     }
 }
+
+// english: "en-US"
+// arabic: "ar-SA" "مرحبا بالعالم"

@@ -101,6 +101,27 @@ extension SoundboardItem {
                        textEnglish: "!",
                        textArabic: "!",
                        isFavorite: false),
+        
+        SoundboardItem(id: "11",
+                       image: "img/dir",
+                       category: "Test4",
+                       textEnglish: "another test",
+                       textArabic: "another test",
+                       isFavorite: false),
+        
+        SoundboardItem(id: "12",
+                       image: "img/dir",
+                       category: "Test4",
+                       textEnglish: "!",
+                       textArabic: "!",
+                       isFavorite: false),
+        
+        SoundboardItem(id: "13",
+                       image: "img/dir",
+                       category: "Test4",
+                       textEnglish: "another test",
+                       textArabic: "another test",
+                       isFavorite: false),
     ]
 }
 

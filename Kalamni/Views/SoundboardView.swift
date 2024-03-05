@@ -12,30 +12,43 @@ struct SoundboardView: View {
     @StateObject var viewModel = SoundboardViewViewModel()
     var items: [SoundboardItem]
 
-    let layout = [
-        GridItem(.adaptive(minimum: 120)),
-        GridItem(.adaptive(minimum: 120)),
-        GridItem(.adaptive(minimum: 120))
-    ]
+    let columns: [GridItem] = [        GridItem(.fixed(110)),
+                                       GridItem(.fixed(110)),
+                                       GridItem(.fixed(110))]
     
     var body: some View {
         NavigationView {
             ZStack {
                 HeaderView(title: "Soundboard", subtitle: "", angle: 10, background: .mint).padding(.bottom, 420)
                 
-                var itemset = items.chunked(into: 9)
+                let itemset = items.chunked(into: 9)
                 
                 VStack {
                     TabView {
                         if items.count != 0 {
                             ForEach(itemset, id: \.self) { itemGroup in
                                 ZStack {
-                                    RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
-                                    Grid {
-                                        ForEach(itemGroup, id: \.self) { item in
-                                            ZStack{
-                                                SoundboardItemView(item: item).frame(width: 100, height: 100).offset(x:50)
-                                            }
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .frame(width: 360, height: 360)
+                                        .foregroundColor(.mint)
+                                        .offset(y:150)
+                                    VStack {
+                                        Spacer().frame(minHeight: 300, maxHeight: 300)
+                                        LazyVGrid(columns: columns) {
+                                                    ForEach(itemGroup, id: \.self) { item in
+                                                        Button {
+                                                            viewModel.talk(text: item.textEnglish, language: "en-US")
+                                                        } label: {
+                                                            SoundboardItemView(item: item, language: "en-US")
+                                                                              .frame(width: 100, height: 100)
+                                                                              .padding(4)
+                                                        }
+                                                    }
+                                                }
+                                        if (itemGroup.count < 4) {
+                                            Spacer().frame(minHeight: 230, maxHeight: 230)
+                                        } else if (itemGroup.count < 7) {
+                                            Spacer().frame(minHeight: 115, maxHeight: 115)
                                         }
                                     }
                                 }
