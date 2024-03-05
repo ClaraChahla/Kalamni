@@ -15,13 +15,13 @@ struct SoundboardItemView: View {
         ZStack(alignment: .bottomTrailing) {
             RoundedRectangle(cornerRadius: 10)
                 .foregroundColor(.teal)
-                .frame(width:120, height: 120)
             Text(item.textEnglish)
                 .foregroundColor(.white)
                 .font(.system(size: 16))
-                .frame(width:120, height: 210)
                 .shadow(color: .black, radius: 1)
                 .bold()
+                .padding()
+                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
             Button {
                 viewModel.toggleIsFavorite(item: &item)
             } label: {
@@ -29,6 +29,7 @@ struct SoundboardItemView: View {
                     .foregroundColor(.yellow)
                     .font(.system(size: 25))
                     .bold()
+                    .frame(maxWidth: 25, maxHeight: 25)
             }
         }
     }

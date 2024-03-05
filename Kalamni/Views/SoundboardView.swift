@@ -10,18 +10,48 @@ import SwiftUI
 
 struct SoundboardView: View {
     @StateObject var viewModel = SoundboardViewViewModel()
+    var items: [SoundboardItem]
+
+    let layout = [
+        GridItem(.adaptive(minimum: 120)),
+        GridItem(.adaptive(minimum: 120)),
+        GridItem(.adaptive(minimum: 120))
+    ]
     
     var body: some View {
         NavigationView {
             ZStack {
                 HeaderView(title: "Soundboard", subtitle: "", angle: 10, background: .mint).padding(.bottom, 420)
                 
+                var itemset = items.chunked(into: 9)
+                
                 VStack {
                     TabView {
-                        RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
-                        RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
-                        RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
+                        if items.count != 0 {
+                            ForEach(itemset, id: \.self) { itemGroup in
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
+                                    Grid {
+                                        ForEach(itemGroup, id: \.self) { item in
+                                            ZStack{
+                                                SoundboardItemView(item: item).frame(width: 100, height: 100).offset(x:50)
+                                            }
+                                        }
+                                    }
+                                }
                             }
+                        } else {
+                            ZStack {
+                                RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
+                                Text("Nothing to show right now")
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 25))
+                                    .offset(y: 100)
+                                    .shadow(color: .black, radius: 1)
+                            }
+                        }
+                    }
                             .tabViewStyle(PageTabViewStyle())
                             .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                 }
@@ -31,9 +61,8 @@ struct SoundboardView: View {
 }
 
 #Preview {
-    SoundboardView()
+    SoundboardView(items: SoundboardItem.sampleData)
 }
-
 
 
 //VStack {

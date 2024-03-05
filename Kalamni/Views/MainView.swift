@@ -21,7 +21,7 @@ struct MainView: View {
     @ViewBuilder
     var accountView: some View {
         TabView {
-            SoundboardView()
+            SoundboardView(items: SoundboardItem.sampleData)
                 .tabItem {
                     Label("Soundboard", systemImage: "speaker.wave.3")
                 }
