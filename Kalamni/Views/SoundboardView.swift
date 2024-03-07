@@ -14,7 +14,9 @@ struct SoundboardView: View {
 
     init(userID: String) {
         self._viewModel = StateObject(wrappedValue: SoundboardViewViewModel(userID: userID))
-        items = SoundboardItem.sampleData
+        self.items = SoundboardItem.sampleData
+//        print(UIScreen.main.bounds.width)
+//        print(UIScreen.main.bounds.height)
     }
     
     let columns: [GridItem] = [
@@ -76,6 +78,7 @@ struct SoundboardView: View {
                 }
             }
         }.onAppear {
+//            viewModel.language = "en-US"
             viewModel.language = SoundboardViewViewModel.currentLanguage
             if (viewModel.language == nil) {
                 viewModel.fetchLanguage()
