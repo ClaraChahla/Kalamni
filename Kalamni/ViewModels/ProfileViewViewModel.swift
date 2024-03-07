@@ -13,6 +13,8 @@ class ProfileViewViewModel: ObservableObject {
     init() {}
     
     @Published var user: User? = nil
+    private let en: Language = .english
+    private let ar: Language = .arabic
     
     func fetchUser() {
         guard let userID = Auth.auth().currentUser?.uid else {
@@ -29,10 +31,12 @@ class ProfileViewViewModel: ObservableObject {
                     id: data["id"] as? String ?? "",
                     name: data["name"] as? String ?? "",
                     email: data["email"] as? String ?? "",
+                    language: data["language"] as? String ?? "",
                     joined: data["joined"] as? TimeInterval ?? 0
                 )
             }
         }
+        return
     }
     
     func logOut() {
@@ -41,5 +45,22 @@ class ProfileViewViewModel: ObservableObject {
         } catch {
             print(error)
         }
+    }
+    
+    func getLanguage() -> Language {
+        return user?.language == "en-US" ? en : ar
+    }
+    
+    func toggleLanguage(language: String) {
+        if (language == user?.language) {
+            return
+        }
+        
+        guard let uid = Auth.auth().currentUser?.uid else {
+            return
+        }
+        let update = Firestore.firestore().collection("users").document(uid)
+        update.updateData(["language": language])
+        fetchUser()
     }
 }

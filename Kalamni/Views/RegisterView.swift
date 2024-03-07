@@ -9,6 +9,8 @@ import SwiftUI
 
 struct RegisterView: View {
     @StateObject var viewModel = RegisterViewViewModel()
+    @State private var selectedLanguage: Language = .english
+
 
     var body: some View {
         VStack {
@@ -22,11 +24,18 @@ struct RegisterView: View {
                 SecureField("Password", text: $viewModel.password).textFieldStyle(DefaultTextFieldStyle())
 
                 TLButton(title: "Create Account", background: .orange) {
+                    viewModel.language = selectedLanguage == .english ? "en-US" : "ar-SA"
                     viewModel.register()
                 }
             }
         }
-        Spacer()
+
+        Picker("Language", selection: $selectedLanguage) {
+            ForEach(Language.allCases) { language in
+                Text(language.rawValue.capitalized)
+            }
+        }.pickerStyle(.segmented)
+            .padding(.bottom, 20)
     }
 }
 

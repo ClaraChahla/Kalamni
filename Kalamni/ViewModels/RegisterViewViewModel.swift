@@ -13,6 +13,7 @@ class RegisterViewViewModel: ObservableObject {
     @Published var name = ""
     @Published var email = ""
     @Published var password = ""
+    @Published var language = ""
     
     init(){}
     
@@ -34,6 +35,7 @@ class RegisterViewViewModel: ObservableObject {
         let newUser = User(id: id,
                            name: name,
                            email: email,
+                           language: language,
                            joined: Date().timeIntervalSince1970)
         
         let db = Firestore.firestore()
@@ -60,4 +62,9 @@ class RegisterViewViewModel: ObservableObject {
         
         return true
     }
+}
+
+enum Language: String, CaseIterable, Identifiable {
+    case english, arabic
+    var id: Self { self }
 }

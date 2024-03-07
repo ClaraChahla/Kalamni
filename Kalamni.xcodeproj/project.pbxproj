@@ -145,8 +145,8 @@
 				7AF50A362B86849600AC7793 /* MessageView.swift */,
 				7AF50A322B867EB700AC7793 /* ProfileView.swift */,
 				7AF50A3C2B86873900AC7793 /* SoundboardItemView.swift */,
-				7AF50A242B8679B100AC7793 /* TLButton.swift */,
 				7AF50A262B8679EB00AC7793 /* HeaderView.swift */,
+				7AF50A242B8679B100AC7793 /* TLButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";

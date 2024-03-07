@@ -9,7 +9,8 @@ import SwiftUI
 
 struct ProfileView: View {
     @StateObject var viewModel = ProfileViewViewModel()
-
+    @State private var selectedLanguage: Language = .english
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -55,13 +56,23 @@ struct ProfileView: View {
                 Text("\(Date(timeIntervalSince1970: user.joined).formatted(date: .abbreviated, time: .shortened))")
             }
         }
-        .padding()
-        
         Button("Log Out") {
             viewModel.logOut()
         }
         .tint(.red)
         .padding()
+        
+        Spacer()
+        Picker("Language", selection: $selectedLanguage) {
+            ForEach(Language.allCases) { language in
+                Text(language.rawValue.capitalized)
+            }.onChange(of:selectedLanguage) {
+                let lang = selectedLanguage == .english ? "en-US" : "ar-SA"
+                viewModel.toggleLanguage(language: lang)
+            }
+        }.pickerStyle(.segmented).onAppear {
+            selectedLanguage = viewModel.getLanguage()
+        }.padding(.top, 50)
     }
 }
 

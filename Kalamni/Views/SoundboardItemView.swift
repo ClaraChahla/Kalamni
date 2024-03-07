@@ -11,28 +11,34 @@ struct SoundboardItemView: View {
     @StateObject var viewModel = SoundboardItemViewViewModel()
     @State var item: SoundboardItem
     @State var language: String
-    
+    let action: () -> Void
+
     var body: some View {
-        ZStack(alignment: .bottomTrailing) {
-            RoundedRectangle(cornerRadius: 10)
-                .foregroundColor(.teal)
-            Text(language == "en-US" ? item.textEnglish : item.textArabic)
-                .foregroundColor(.white)
-                .font(.system(size: 16))
-                .shadow(color: .black, radius: 1)
-                .bold()
-                .padding()
-                .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-            Button {
-                viewModel.toggleIsFavorite(item: &item)
-            } label: {
-                Image(systemName: item.isFavorite ? "star.fill" : "star")
-                    .foregroundColor(.yellow)
-                    .font(.system(size: 25))
+        Button {
+            action()
+        } label: {
+            ZStack(alignment: .bottomTrailing) {
+                RoundedRectangle(cornerRadius: 10)
+                    .foregroundColor(.teal)
+                Text(language == "en-US" ? item.textEnglish : item.textArabic)
+                    .foregroundColor(.white)
+                    .font(.system(size: 16))
+                    .shadow(color: .black, radius: 1)
                     .bold()
-                    .frame(maxWidth: 30, maxHeight: 30)
+                    .padding()
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
+                Button {
+                    viewModel.toggleIsFavorite(item: &item)
+                } label: {
+                    Image(systemName: item.isFavorite ? "star.fill" : "star")
+                        .foregroundColor(.yellow)
+                        .font(.system(size: 20))
+                        .bold()
+                        .contentShape(Circle())
+                }
             }
         }
+        .padding()
     }
 }
 
@@ -44,5 +50,7 @@ struct SoundboardItemView: View {
         textEnglish: "Test English",
         textArabic: "Test Arabic",
         isFavorite: false
-    ), language: "en-US")
+    ), language: "en-US"){
+        // Action
+    }
 }
