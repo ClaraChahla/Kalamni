@@ -49,7 +49,7 @@ struct SoundboardView: View {
                                                         }
                                                     }
                                             if (itemGroup.count < 4) {
-                                                Spacer().frame(minHeight: 230, maxHeight: 230)
+                                                Spacer().frame(minHeight: 250, maxHeight: 250)
                                             } else if (itemGroup.count < 7) {
                                                 Spacer().frame(minHeight: 125, maxHeight: 125)
                                             }
@@ -62,7 +62,7 @@ struct SoundboardView: View {
                                     Text("Nothing to show right now")
                                         .bold()
                                         .foregroundColor(.white)
-                                        .font(.system(size: 25))
+                                        .font(.system(size: 20))
                                         .offset(y: 100)
                                         .shadow(color: .black, radius: 1)
                                 }

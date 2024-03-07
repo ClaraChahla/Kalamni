@@ -22,7 +22,7 @@ struct SoundboardItemView: View {
                     .foregroundColor(.teal)
                 Text(language == "en-US" ? item.textEnglish : item.textArabic)
                     .foregroundColor(.white)
-                    .font(.system(size: 16))
+                    .font(.system(size: 15))
                     .shadow(color: .black, radius: 1)
                     .bold()
                     .padding()
