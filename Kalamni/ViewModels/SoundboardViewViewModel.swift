@@ -42,7 +42,11 @@ class SoundboardViewViewModel: ObservableObject {
     }
     
     func talk(textEnglish:String, textArabic:String, language:String) {
-        let text = language == "en-US" ? textEnglish : textArabic
+        var text = language == "en-US" ? textEnglish : textArabic
+        
+        if (text.count == 1 && language == "en-US") {
+            text = text.lowercased();
+        }
         
         let utterance = AVSpeechUtterance(string: text)
         utterance.voice = AVSpeechSynthesisVoice(language: language)
