@@ -15,7 +15,7 @@ class RegisterViewViewModel: ObservableObject {
     @Published var password = ""
     @Published var language = ""
     
-    init(){}
+    init() {}
     
     func register(){
         guard validate() else {
@@ -62,9 +62,4 @@ class RegisterViewViewModel: ObservableObject {
         
         return true
     }
-}
-
-enum Language: String, CaseIterable, Identifiable {
-    case english, arabic
-    var id: Self { self }
 }

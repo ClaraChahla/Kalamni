@@ -10,11 +10,11 @@ import FirebaseFirestore
 import Foundation
 
 class ProfileViewViewModel: ObservableObject {
-    init() {}
-    
     @Published var user: User? = nil
     private let en: Language = .english
     private let ar: Language = .arabic
+    
+    init() {}
     
     func fetchUser() {
         guard let userID = Auth.auth().currentUser?.uid else {

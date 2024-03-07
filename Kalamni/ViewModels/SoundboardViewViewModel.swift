@@ -16,6 +16,10 @@ class SoundboardViewViewModel: ObservableObject {
     static var currentLanguage: String? = nil
     @Published var language: String? = nil
     
+    init(userID: String) {
+        self.userID = userID
+    }
+    
     func fetchLanguage() {
         guard let userID = Auth.auth().currentUser?.uid else {
             return
@@ -37,10 +41,6 @@ class SoundboardViewViewModel: ObservableObject {
         self.currentLanguage = language
     }
     
-    init(userID: String) {
-        self.userID = userID
-    }
-    
     func talk(textEnglish:String, textArabic:String, language:String) {
         var text = language == "en-US" ? textEnglish : textArabic
         
@@ -56,4 +56,4 @@ class SoundboardViewViewModel: ObservableObject {
 }
 
 // english: "en-US"
-// arabic: "ar-SA" "مرحبا بالعالم"
+// arabic: "ar-SA"
