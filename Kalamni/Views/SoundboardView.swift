@@ -26,52 +26,63 @@ struct SoundboardView: View {
         NavigationView {
             ZStack {
                 HeaderView(title: "Soundboard", subtitle: "", angle: 10, background: .mint).padding(.bottom, 420)
-                
-                let itemset = items.chunked(into: 9)
+                if let language = viewModel.language {
+                    let itemset = items.chunked(into: 9)
 
-                VStack {
-                    TabView {
-                        if items.count != 0 {
-                            ForEach(itemset, id: \.self) { itemGroup in
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .frame(width: 360, height: 390)
-                                        .foregroundColor(.mint)
-                                        .offset(y:130)
-                                    VStack {
-                                        Spacer().frame(minHeight: 260, maxHeight: 260)
-                                        LazyVGrid(columns: columns) {
-                                                    ForEach(itemGroup, id: \.self) { item in
-                                                        SoundboardItemView(item: item, language: $viewModel.language.wrappedValue){
-                                                            viewModel.talk(textEnglish: item.textEnglish, textArabic: item.textArabic, language: $viewModel.language.wrappedValue)
+                    VStack {
+                        TabView {
+                            if items.count != 0 {
+                                ForEach(itemset, id: \.self) { itemGroup in
+                                    ZStack {
+                                        RoundedRectangle(cornerRadius: 15)
+                                            .frame(width: 360, height: 390)
+                                            .foregroundColor(.mint)
+                                            .offset(y:130)
+                                        VStack {
+                                            Spacer().frame(minHeight: 260, maxHeight: 260)
+                                            LazyVGrid(columns: columns) {
+                                                        ForEach(itemGroup, id: \.self) { item in
+                                                            SoundboardItemView(item: item, language: language){
+                                                                viewModel.talk(textEnglish: item.textEnglish, textArabic: item.textArabic, language: language)
+                                                            }
+                                                                              .frame(width: 125, height: 125)
                                                         }
-                                                                          .frame(width: 125, height: 125)
                                                     }
-                                                }
-                                        if (itemGroup.count < 4) {
-                                            Spacer().frame(minHeight: 230, maxHeight: 230)
-                                        } else if (itemGroup.count < 7) {
-                                            Spacer().frame(minHeight: 125, maxHeight: 125)
+                                            if (itemGroup.count < 4) {
+                                                Spacer().frame(minHeight: 230, maxHeight: 230)
+                                            } else if (itemGroup.count < 7) {
+                                                Spacer().frame(minHeight: 125, maxHeight: 125)
+                                            }
                                         }
                                     }
                                 }
-                            }
-                        } else {
-                            ZStack {
-                                RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
-                                Text("Nothing to show right now")
-                                    .bold()
-                                    .foregroundColor(.white)
-                                    .font(.system(size: 25))
-                                    .offset(y: 100)
-                                    .shadow(color: .black, radius: 1)
+                            } else {
+                                ZStack {
+                                    RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
+                                    Text("Nothing to show right now")
+                                        .bold()
+                                        .foregroundColor(.white)
+                                        .font(.system(size: 25))
+                                        .offset(y: 100)
+                                        .shadow(color: .black, radius: 1)
+                                }
                             }
                         }
+                                .tabViewStyle(PageTabViewStyle())
+                                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                     }
-                            .tabViewStyle(PageTabViewStyle())
-                            .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                } else {
+                    Text("Loading Soundboard...")
                 }
             }
+        }.onAppear {
+            viewModel.language = SoundboardViewViewModel.currentLanguage
+            if (viewModel.language == nil) {
+                viewModel.fetchLanguage()
+            }
+        }
+        .onDisappear {
+            viewModel.language = nil
         }
     }
 }

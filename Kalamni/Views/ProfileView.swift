@@ -58,6 +58,7 @@ struct ProfileView: View {
         }
         Button("Log Out") {
             viewModel.logOut()
+            SoundboardViewViewModel.updateCurrentLanguage(language: nil)
         }
         .tint(.red)
         .padding()

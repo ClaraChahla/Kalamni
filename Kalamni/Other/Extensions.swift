@@ -120,8 +120,8 @@ extension SoundboardItem {
         SoundboardItem(id: "12",
                        image: "img/dir",
                        category: "Test4",
-                       textEnglish: "!",
-                       textArabic: "!",
+                       textEnglish: "popcorn",
+                       textArabic: "popcorn",
                        isFavorite: false),
         
         SoundboardItem(id: "13",

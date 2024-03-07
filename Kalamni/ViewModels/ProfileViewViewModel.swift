@@ -62,5 +62,6 @@ class ProfileViewViewModel: ObservableObject {
         let update = Firestore.firestore().collection("users").document(uid)
         update.updateData(["language": language])
         fetchUser()
+        SoundboardViewViewModel.updateCurrentLanguage(language: language)
     }
 }

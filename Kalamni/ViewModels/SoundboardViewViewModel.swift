@@ -13,7 +13,8 @@ import Foundation
 class SoundboardViewViewModel: ObservableObject {
     let synthesizer = AVSpeechSynthesizer()
     private let userID: String
-    @Published var language: String = ""
+    static var currentLanguage: String? = nil
+    @Published var language: String? = nil
     
     func fetchLanguage() {
         guard let userID = Auth.auth().currentUser?.uid else {
@@ -27,10 +28,14 @@ class SoundboardViewViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 self?.language = data["language"] as? String ?? ""
+                SoundboardViewViewModel.currentLanguage = self?.language
             }
         }
     }
     
+    static func updateCurrentLanguage(language: String?) {
+        self.currentLanguage = language
+    }
     
     init(userID: String) {
         self.userID = userID
