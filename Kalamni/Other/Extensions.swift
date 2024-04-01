@@ -175,3 +175,21 @@ extension SoundboardItem {
 extension SoundboardItem {
     static let sampleDataEmpty: [SoundboardItem] = []
 }
+
+extension SoundboardItem {
+    static let sampleMessage: [SoundboardItem] = [
+        SoundboardItem(id: "0",
+                       image: "img/dir",
+                       category: "Test1",
+                       textEnglish: "Hello",
+                       textArabic: "مرحبًا",
+                       isFavorite: false),
+        
+        SoundboardItem(id: "1",
+                       image: "img/dir",
+                       category: "Test5",
+                       textEnglish: "Good bye",
+                       textArabic: "مع السلامة",
+                       isFavorite: false),
+    ]
+}
