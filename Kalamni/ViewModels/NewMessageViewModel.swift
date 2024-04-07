@@ -10,9 +10,10 @@ import FirebaseFirestore
 import Foundation
 
 class NewMessageViewModel: ObservableObject {
-    @Published var idRecipient = ""
+    @Published var email = MessageViewModel.replyEmail
     @Published var message = ""
     @Published var showAlert = false
+    var idRecipient = ""
     
     init() {}
     
@@ -27,6 +28,9 @@ class NewMessageViewModel: ObservableObject {
         let newMessage = MessageItem(
             id: newId,
             idSender: uId,
+            name: MessageViewModel.name!,
+            email: MessageViewModel.email!,
+            language: SoundboardViewViewModel.currentLanguage!,
             message: message,
             createdDate: Date().timeIntervalSince1970,
             isRead: false
@@ -34,10 +38,28 @@ class NewMessageViewModel: ObservableObject {
         
         // Save model
         let db = Firestore.firestore()
-        db.collection("users")
-            .document(idRecipient)
-            .collection("messages")
-            .document(newId)
-            .setData(newMessage.asDictionary())
+        
+        db.collection("users").whereField("email", isEqualTo: email)
+          .getDocuments() { (querySnapshot, err) in
+            if let err = err {
+                print("Error getting documents: \(err)")
+                return
+            } else {
+                for document in querySnapshot!.documents {
+                    self.idRecipient = document.documentID
+                    
+                    if self.idRecipient == "" {
+                        print("returning")
+                        return
+                    }
+                    
+                    db.collection("users")
+                        .document(self.idRecipient)
+                        .collection("messages")
+                        .document(newId)
+                        .setData(newMessage.asDictionary())
+                }
+            }
+        }
     }
 }

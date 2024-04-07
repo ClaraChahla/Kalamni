@@ -17,7 +17,7 @@ struct NewMessageView: View {
             
             Form {
                 // Title
-                TextField("Recipient", text: $viewModel.idRecipient).textFieldStyle(DefaultTextFieldStyle())
+                TextField("Recipient", text: $viewModel.email).textFieldStyle(DefaultTextFieldStyle()).autocapitalization(/*@START_MENU_TOKEN@*/.none/*@END_MENU_TOKEN@*/).autocorrectionDisabled()
                 
                 // Due Date
                 TextField("Message", text: $viewModel.message).textFieldStyle(DefaultTextFieldStyle())
@@ -28,6 +28,7 @@ struct NewMessageView: View {
                         newItemPresented = false
                 }
                 .padding()
+                
             }
         }
     }

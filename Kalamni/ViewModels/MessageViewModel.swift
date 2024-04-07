@@ -12,11 +12,13 @@ class MessageViewModel: ObservableObject {
     @Published var showingNewItemView = false
     
     private let userID: String
-    
+    static var name: String? = nil
+    static var email: String? = nil
+    static var replyEmail = ""
+
     init(userID: String) {
         self.userID = userID
     }
-    
     
     /// Delete to do list item
     /// - Parameter id: item id to delete

@@ -35,7 +35,7 @@ class MessageItemViewViewModel: ObservableObject {
     
     func toggleIsRead(item: MessageItem) {
         let utterance = AVSpeechUtterance(string: item.message)
-        utterance.voice = AVSpeechSynthesisVoice(language: SoundboardViewViewModel.currentLanguage)
+        utterance.voice = AVSpeechSynthesisVoice(language: item.language)
         synthesizer.speak(utterance)
         
         if item.isRead {

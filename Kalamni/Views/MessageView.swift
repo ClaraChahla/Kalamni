@@ -27,6 +27,10 @@ struct MessageView: View {
                                 viewModel.delete(id: item.id)
                             }
                             .tint(.red)
+                            Button("Reply") {
+                                MessageViewModel.replyEmail = item.email
+                                viewModel.showingNewItemView = true
+                            }.tint(.blue)
                         }
                 }
                 .listStyle(PlainListStyle())
@@ -34,6 +38,7 @@ struct MessageView: View {
             .navigationTitle("Messages")
             .toolbar {
                 Button {
+                    MessageViewModel.replyEmail = ""
                     viewModel.showingNewItemView = true
                 } label: {
                     Image(systemName: "plus")

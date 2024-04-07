@@ -21,7 +21,7 @@ struct MessageItemView: View {
             }
 
             VStack(alignment: .leading) {
-                Text(item.idSender)
+                Text(item.name + " (" + item.email + ")")
                     .font(.footnote)
                 Text(item.message)
                     .font(.body)
@@ -37,6 +37,9 @@ struct MessageItemView: View {
     MessageItemView(item: .init(
         id:"123",
         idSender: "kA4Gg7PBLNZm8kBqsVAhCqwACul2",
+        name: "Daniel Camacho",
+        email: "danielcamacho@csu.fullerton.edu",
+        language: "en-US",
         message: "test message",
         createdDate: Date().timeIntervalSince1970,
         isRead: true
