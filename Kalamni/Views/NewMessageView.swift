@@ -28,7 +28,6 @@ struct NewMessageView: View {
                         newItemPresented = false
                 }
                 .padding()
-                
             }
         }
     }

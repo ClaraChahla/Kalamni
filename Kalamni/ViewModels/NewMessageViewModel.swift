@@ -47,9 +47,10 @@ class NewMessageViewModel: ObservableObject {
             } else {
                 for document in querySnapshot!.documents {
                     self.idRecipient = document.documentID
+                    print(self.idRecipient)
                     
-                    if self.idRecipient == "" {
-                        print("returning")
+                    if self.idRecipient.isEmpty {
+                        print("Email does not exist")
                         return
                     }
                     
