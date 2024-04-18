@@ -20,20 +20,27 @@ struct MessageView: View {
     var body: some View {
         NavigationView {
             VStack {
-                List(messages.sorted {$0.createdDate > $1.createdDate}) { item in
-                    MessageItemView(item: item)
-                        .swipeActions {
-                            Button("Delete") {
-                                viewModel.delete(id: item.id)
+                if !messages.isEmpty {
+                    List(messages.sorted {$0.createdDate > $1.createdDate}) { item in
+                        MessageItemView(item: item)
+                            .swipeActions {
+                                Button("Delete") {
+                                    viewModel.delete(id: item.id)
+                                }
+                                .tint(.red)
+                                Button("Reply") {
+                                    MessageViewModel.replyEmail = item.email
+                                    viewModel.showingNewItemView = true
+                                }.tint(.blue)
                             }
-                            .tint(.red)
-                            Button("Reply") {
-                                MessageViewModel.replyEmail = item.email
-                                viewModel.showingNewItemView = true
-                            }.tint(.blue)
-                        }
+                    }
+                    .listStyle(PlainListStyle())
+                } else {
+                    Image(systemName: "mail")
+                        .imageScale(.large)
+                        .foregroundStyle(.tint)
+                    Text("No Messages")
                 }
-                .listStyle(PlainListStyle())
             }
             .navigationTitle("Messages")
             .toolbar {
