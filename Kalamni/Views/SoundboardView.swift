@@ -9,9 +9,9 @@ import FirebaseFirestoreSwift
 import SwiftUI
 
 struct SoundboardView: View {
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     @StateObject var viewModel:SoundboardViewViewModel
     var items: [SoundboardItem]
-
 
     init(userID: String) {
         self._viewModel = StateObject(wrappedValue: SoundboardViewViewModel(userID: userID))
@@ -20,42 +20,43 @@ struct SoundboardView: View {
 //        print(UIScreen.main.bounds.height)
     }
     
-    let columns: [GridItem] = [
-        GridItem(.adaptive(minimum: 110)),
-        GridItem(.adaptive(minimum: 110)),
-        GridItem(.adaptive(minimum: 110))
-    ]
+//    let columns: [GridItem] = [
+//        GridItem(.adaptive(minimum: 60)),
+//        GridItem(.adaptive(minimum: 60)),
+//        GridItem(.adaptive(minimum: 60))
+//    ]
+//    
+    let rows = Array(repeating: GridItem(.fixed(85)), count: 3)
     
     var body: some View {
         NavigationView {
                 if let language = viewModel.language {
-                    let itemset = items.chunked(into: 12)
+//                    let itemset = items.chunked(into: 12)
 
                     TabView {
                         if items.count != 0 {
-                            ForEach(itemset, id: \.self) { itemGroup in
-                                ZStack {
-                                    RoundedRectangle(cornerRadius: 15)
-                                    .frame(width: 380, height: 400)
-                                    .foregroundColor(.mint)
-                                VStack {
-                                    LazyVGrid(columns: columns) {
-                                        ForEach(itemGroup, id: \.self) { item in
+//                            ForEach(items, id: \.self) { itemGroup in
+//                                ZStack {
+//                                    RoundedRectangle(cornerRadius: 15)
+                               //     .frame(width: 380, height: 400)
+//                                    .foregroundColor(.mint)
+                                ScrollView(.horizontal) {
+                                    LazyHGrid(rows: rows) {
+                                        ForEach(items, id: \.self) { item in
                                         SoundboardItemView(item: item, language: language){
                                             viewModel.talk(textEnglish: item.textEnglish, textArabic: item.textArabic, language: language)
-                                        
                                         }
-//                                        .padding(.bottom, 0)
-//                                        .padding(.leading, 10)
-//                                        .padding(.trailing, 10)
-                                    .frame(height: 100)
-                                
+                                        .padding(.bottom, -15)
+                                        .padding(.leading, -15)
+                                        .padding(.trailing, -15)
+                                        .containerRelativeFrame(.horizontal, count: verticalSizeClass == .regular ? 3 : 5, spacing: 16)
                                     
                                             }
                                         }
                                     }
-                                }
-                            }
+                                .scrollTargetLayout()
+//                                }
+//                            }
                         } else {
                             ZStack {
                                     RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
@@ -67,8 +68,10 @@ struct SoundboardView: View {
                             }
                         }
                     }
-                    .tabViewStyle(PageTabViewStyle())
-                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
+                    .contentMargins(16, for: .scrollContent)
+                    .scrollTargetBehavior(.viewAligned)
+//                    .tabViewStyle(PageTabViewStyle())
+//                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             }
                     else {
                             Text("Loading Soundboard...")
