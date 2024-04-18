@@ -40,23 +40,81 @@ struct SoundboardView: View {
 //                                    RoundedRectangle(cornerRadius: 15)
                                //     .frame(width: 380, height: 400)
 //                                    .foregroundColor(.mint)
-                                ScrollView(.horizontal) {
-                                    LazyHGrid(rows: rows) {
-                                        ForEach(items, id: \.self) { item in
-                                        SoundboardItemView(item: item, language: language){
-                                            viewModel.talk(textEnglish: item.textEnglish, textArabic: item.textArabic, language: language)
-                                        }
-                                        .padding(.bottom, -15)
-                                        .padding(.leading, -15)
-                                        .padding(.trailing, -15)
-                                        .containerRelativeFrame(.horizontal, count: verticalSizeClass == .regular ? 3 : 5, spacing: 16)
-                                    
-                                            }
-                                        }
+                            
+//text box
+                            Grid {
+                                GridRow {
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .frame(width: 360, height: 120)
+                                }
+                                .foregroundColor(.white)
+                                .shadow(color: .black ,radius: 1)
+                                //.offset(y: -200)
+                                
+//favorite phrase button
+                                VStack{
+                                    Button {
+                                        
+                                    } label: {
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                            .font(.system(size: 40))
+                                            .bold()
+                                            .contentShape(Circle())
                                     }
-                                .scrollTargetLayout()
+                                    //.offset(x: -145, y:-190)
+                                }
+
+                                
+//clear button
+                                VStack {
+                                    Button("Clear") {
+                                        
+                                    }
+                                    .foregroundColor(.black).opacity(0.6)
+                                    .accentColor(.teal)
+                                    .font(.system(size: 30))
+                                    .bold()
+                                    .buttonStyle(.borderedProminent)
+                                    //.offset(x: -35, y: -242)
+                                }
+                                
+//speak button
+                                VStack {
+                                    Button("Speak") {
+                                    }
+                                    .foregroundColor(.black).opacity(0.6)
+                                    .accentColor(.teal)
+                                    .font(.system(size: 30))
+                                    .bold()
+                                    .contentShape(Circle())
+                                    .buttonStyle(.borderedProminent)
+
+                                    //.offset(x: 110, y: -299)
+                                }
+                            
+                            
+ScrollView(.horizontal) {
+                                    
+
+                                    
+//soundcards
+                LazyHGrid(rows: rows) {
+                    ForEach(items, id: \.self) { item in
+                    SoundboardItemView(item: item, language: language){
+                        viewModel.talk(textEnglish: item.textEnglish, textArabic: item.textArabic, language: language)
+                    }
+                    .padding(.bottom, -15)
+                    .padding(.leading, -15)
+                    .padding(.trailing, -15)
+                    .containerRelativeFrame(.horizontal, count: verticalSizeClass == .regular ? 3 : 5, spacing: 16)
+                
+                        }
+                    }
+                }
+            .scrollTargetLayout()
 //                                }
-//                            }
+                            }
                         } else {
                             ZStack {
                                     RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
