@@ -22,17 +22,17 @@ struct HeaderView: View {
             VStack {
                 Text(title)
                     .font(.system(size: 50))
-                    .foregroundColor(Color.white)
+                    .foregroundColor(Color.black)
                     .bold()
                 Text(subtitle)
                     .font(.system(size: 30))
                     .foregroundColor(Color.white)
             }
-            .padding(.top, 30)
+            .padding(.top, 180)
             
         }
         .frame(width: UIScreen.main.bounds.width * 3, height: 300)
-        .offset(y: -100)
+        .offset(y: -150)
     }
 }
 
