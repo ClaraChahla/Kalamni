@@ -32,6 +32,8 @@ class SoundboardViewViewModel: ObservableObject {
             
             DispatchQueue.main.async {
                 self?.language = data["language"] as? String ?? ""
+                MessageViewModel.name = data["name"] as? String ?? ""
+                MessageViewModel.email = data["email"] as? String ?? ""
                 SoundboardViewViewModel.currentLanguage = self?.language
             }
         }

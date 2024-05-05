@@ -7,9 +7,12 @@
 
 import Foundation
 
-struct Message: Codable, Identifiable {
+struct MessageItem: Codable, Identifiable {
     let id: String
     let idSender: String
+    let name: String
+    let email: String
+    let language: String
     let message: String
     let createdDate: TimeInterval
     var isRead: Bool
