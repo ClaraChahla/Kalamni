@@ -9,6 +9,7 @@ import FirebaseFirestoreSwift
 import SwiftUI
 
 struct SoundboardView: View {
+    @Environment(\.verticalSizeClass) var verticalSizeClass
     @StateObject var viewModel:SoundboardViewViewModel
     var items: [SoundboardItem]
 
@@ -19,65 +20,123 @@ struct SoundboardView: View {
 //        print(UIScreen.main.bounds.height)
     }
     
-    let columns: [GridItem] = [
-        GridItem(.fixed(110)),
-        GridItem(.fixed(110)),
-        GridItem(.fixed(110)) ]
+//    let columns: [GridItem] = [
+//        GridItem(.adaptive(minimum: 60)),
+//        GridItem(.adaptive(minimum: 60)),
+//        GridItem(.adaptive(minimum: 60))
+//    ]
+//    
+    let rows = Array(repeating: GridItem(.fixed(85)), count: 3)
     
     var body: some View {
         NavigationView {
-            ZStack {
-                HeaderView(title: "Soundboard", subtitle: "", angle: 10, background: .mint).padding(.bottom, 420)
                 if let language = viewModel.language {
-                    let itemset = items.chunked(into: 9)
+//                    let itemset = items.chunked(into: 12)
 
-                    VStack {
-                        TabView {
-                            if items.count != 0 {
-                                ForEach(itemset, id: \.self) { itemGroup in
-                                    ZStack {
-                                        RoundedRectangle(cornerRadius: 15)
-                                            .frame(width: 360, height: 390)
-                                            .foregroundColor(.mint)
-                                            .offset(y:130)
-                                        VStack {
-                                            Spacer().frame(minHeight: 260, maxHeight: 260)
-                                            LazyVGrid(columns: columns) {
-                                                        ForEach(itemGroup, id: \.self) { item in
-                                                            SoundboardItemView(item: item, language: language){
-                                                                viewModel.talk(textEnglish: item.textEnglish, textArabic: item.textArabic, language: language)
-                                                            }
-                                                                              .frame(width: 125, height: 125)
-                                                        }
-                                                    }
-                                            if (itemGroup.count < 4) {
-                                                Spacer().frame(minHeight: 250, maxHeight: 250)
-                                            } else if (itemGroup.count < 7) {
-                                                Spacer().frame(minHeight: 125, maxHeight: 125)
-                                            }
-                                        }
-                                    }
+                    TabView {
+                        if items.count != 0 {
+//                            ForEach(items, id: \.self) { itemGroup in
+//                                ZStack {
+//                                    RoundedRectangle(cornerRadius: 15)
+                               //     .frame(width: 380, height: 400)
+//                                    .foregroundColor(.mint)
+                            
+//text box
+                            Grid {
+                                GridRow {
+                                    RoundedRectangle(cornerRadius: 15)
+                                        .frame(width: 360, height: 120)
                                 }
-                            } else {
-                                ZStack {
+                                .foregroundColor(.white)
+                                .shadow(color: .black ,radius: 1)
+                                //.offset(y: -200)
+                                
+//favorite phrase button
+                                VStack{
+                                    Button {
+                                        
+                                    } label: {
+                                        Image(systemName: "star.fill")
+                                            .foregroundColor(.yellow)
+                                            .font(.system(size: 40))
+                                            .bold()
+                                            .contentShape(Circle())
+                                    }
+                                    //.offset(x: -145, y:-190)
+                                }
+
+                                
+//clear button
+                                VStack {
+                                    Button("Clear") {
+                                        
+                                    }
+                                    .foregroundColor(.black).opacity(0.6)
+                                    .accentColor(.teal)
+                                    .font(.system(size: 30))
+                                    .bold()
+                                    .buttonStyle(.borderedProminent)
+                                    //.offset(x: -35, y: -242)
+                                }
+                                
+//speak button
+                                VStack {
+                                    Button("Speak") {
+                                    }
+                                    .foregroundColor(.black).opacity(0.6)
+                                    .accentColor(.teal)
+                                    .font(.system(size: 30))
+                                    .bold()
+                                    .contentShape(Circle())
+                                    .buttonStyle(.borderedProminent)
+
+                                    //.offset(x: 110, y: -299)
+                                }
+                            
+                            
+ScrollView(.horizontal) {
+                                    
+
+                                    
+//soundcards
+                LazyHGrid(rows: rows) {
+                    ForEach(items, id: \.self) { item in
+                    SoundboardItemView(item: item, language: language){
+                        viewModel.talk(textEnglish: item.textEnglish, textArabic: item.textArabic, language: language)
+                    }
+                    .padding(.bottom, -15)
+                    .padding(.leading, -15)
+                    .padding(.trailing, -15)
+                    .containerRelativeFrame(.horizontal, count: verticalSizeClass == .regular ? 3 : 5, spacing: 16)
+                
+                        }
+                    }
+                }
+            .scrollTargetLayout()
+//                                }
+                            }
+                        } else {
+                            ZStack {
                                     RoundedRectangle(cornerRadius: 15).frame(width: 360, height: 420).foregroundColor(.mint).offset(y:100)
                                     Text("Nothing to show right now")
-                                        .bold()
-                                        .foregroundColor(.white)
-                                        .font(.system(size: 20))
-                                        .offset(y: 100)
-                                        .shadow(color: .black, radius: 1)
-                                }
+                                    .bold()
+                                    .foregroundColor(.white)
+                                    .font(.system(size: 20))
+                                    .shadow(color: .black, radius: 1)
                             }
                         }
-                                .tabViewStyle(PageTabViewStyle())
-                                .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
                     }
-                } else {
-                    Text("Loading Soundboard...")
-                }
+                    .contentMargins(16, for: .scrollContent)
+                    .scrollTargetBehavior(.viewAligned)
+//                    .tabViewStyle(PageTabViewStyle())
+//                    .indexViewStyle(PageIndexViewStyle(backgroundDisplayMode: .always))
             }
+                    else {
+                            Text("Loading Soundboard...")
+                    }
         }.onAppear {
+            UIPageControl.appearance().currentPageIndicatorTintColor = .systemTeal
+            UIPageControl.appearance().pageIndicatorTintColor = UIColor.systemTeal.withAlphaComponent(0.2)
 //            viewModel.language = "en-US"
             viewModel.language = SoundboardViewViewModel.currentLanguage
             if (viewModel.language == nil) {

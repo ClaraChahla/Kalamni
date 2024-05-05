@@ -26,16 +26,16 @@ struct SoundboardItemView: View {
                     .shadow(color: .black, radius: 1)
                     .bold()
                     .padding()
-                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .top)
-                Button {
-                    viewModel.toggleIsFavorite(item: &item)
-                } label: {
-                    Image(systemName: item.isFavorite ? "star.fill" : "star")
-                        .foregroundColor(.yellow)
-                        .font(.system(size: 20))
-                        .bold()
-                        .contentShape(Circle())
-                }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+//                Button {
+//                    viewModel.toggleIsFavorite(item: &item)
+//                } label: {
+//                    Image(systemName: item.isFavorite ? "star.fill" : "star")
+//                        .foregroundColor(.yellow)
+//                        .font(.system(size: 20))
+//                        .bold()
+//                        .contentShape(Circle())
+//                }
             }
         }
         .padding()
