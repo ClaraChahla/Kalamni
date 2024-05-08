@@ -12,10 +12,12 @@ struct SoundboardView: View {
     @Environment(\.verticalSizeClass) var verticalSizeClass
     @StateObject var viewModel:SoundboardViewViewModel
     var items: [SoundboardItem]
+    @State var queue: [SoundboardItem]
 
     init(userID: String) {
         self._viewModel = StateObject(wrappedValue: SoundboardViewViewModel(userID: userID))
         self.items = SoundboardItem.sampleData
+        self.queue = []
 //        print(UIScreen.main.bounds.width)
 //        print(UIScreen.main.bounds.height)
     }
@@ -27,6 +29,8 @@ struct SoundboardView: View {
 //    ]
 //    
     let rows = Array(repeating: GridItem(.fixed(85)), count: 3)
+    let qrows = Array(repeating: GridItem(.fixed(85)), count: 1)
+
     
     var body: some View {
         NavigationView {
@@ -43,33 +47,26 @@ struct SoundboardView: View {
                             
 //text box
                             Grid {
-                                GridRow {
-                                    RoundedRectangle(cornerRadius: 15)
-                                        .frame(width: 360, height: 120)
-                                }
-                                .foregroundColor(.white)
-                                .shadow(color: .black ,radius: 1)
-                                //.offset(y: -200)
-                                
-//favorite phrase button
-                                VStack{
-                                    Button {
-                                        
-                                    } label: {
-                                        Image(systemName: "star.fill")
-                                            .foregroundColor(.yellow)
-                                            .font(.system(size: 40))
-                                            .bold()
-                                            .contentShape(Circle())
-                                    }
-                                    //.offset(x: -145, y:-190)
-                                }
+                                ScrollView(.horizontal) {
+                                                                    
+
+                                                                    
+                                //soundcards
+                                                LazyHGrid(rows: qrows) {
+                                                    ForEach(queue, id: \.self) { item in
+                                                    SoundboardItemView(item: item, language: language){
+                                                        
+                                                    }
+                                                        }
+                                                    }
+                                                }
+                                            .scrollTargetLayout()
 
                                 
 //clear button
                                 VStack {
                                     Button("Clear") {
-                                        
+                                        queue.removeAll()
                                     }
                                     .foregroundColor(.black).opacity(0.6)
                                     .accentColor(.teal)
@@ -82,6 +79,7 @@ struct SoundboardView: View {
 //speak button
                                 VStack {
                                     Button("Speak") {
+                                        viewModel.playQueue(queue: queue)
                                     }
                                     .foregroundColor(.black).opacity(0.6)
                                     .accentColor(.teal)
@@ -102,7 +100,7 @@ ScrollView(.horizontal) {
                 LazyHGrid(rows: rows) {
                     ForEach(items, id: \.self) { item in
                     SoundboardItemView(item: item, language: language){
-                        viewModel.talk(textEnglish: item.textEnglish, textArabic: item.textArabic, language: language)
+                        queue.append(item)
                     }
                     .padding(.bottom, -15)
                     .padding(.leading, -15)

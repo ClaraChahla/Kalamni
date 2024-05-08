@@ -39,6 +39,12 @@ class SoundboardViewViewModel: ObservableObject {
         }
     }
     
+    func playQueue(queue: [SoundboardItem]) {
+        for item in queue {
+            talk(textEnglish: item.textEnglish, textArabic: item.textArabic, language: language!)
+        }
+    }
+    
     static func updateCurrentLanguage(language: String?) {
         self.currentLanguage = language
     }
