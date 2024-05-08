@@ -53,10 +53,10 @@ struct SoundboardView: View {
                                                                     
                                 //soundcards
                                                 LazyHGrid(rows: qrows) {
-                                                    ForEach(queue, id: \.self) { item in
-                                                    SoundboardItemView(item: item, language: language){
-                                                        
-                                                    }
+                                                    ForEach(Array(queue.enumerated()), id: \.element) { index, element in
+                                                    SoundboardItemView(item: element, language: language){
+                                                        queue.remove(at: index)
+                                                            }
                                                         }
                                                     }
                                                 }
