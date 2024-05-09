@@ -17,7 +17,8 @@ This application will have features such as:
 ![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/e02e42d3-9139-4f81-ae44-b4f9f6fa9ec3)
 
 # Messages
-![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/7b2ff701-05b6-4680-8af4-476c0df9f292)
+![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/7b2ff701-05b6-4680-8af4-476c0df9f292) ![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/f94cedc0-c8b9-40be-a234-038842eab2b9)
+
 
 # Profile
 ![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/e6c0500f-bbe5-499f-b20c-c15a2f85c1b5)
