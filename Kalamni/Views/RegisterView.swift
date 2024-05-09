@@ -14,8 +14,8 @@ struct RegisterView: View {
 
     var body: some View {
         VStack {
-            HeaderView(title: "Register", subtitle: "Create an account", angle: -10, background: .orange)
-
+            HeaderView(title: "Register", subtitle: "Create an account", angle: 0, background: .teal)
+                .padding(.top, -40)
             Form {
                 TextField("Full Name", text: $viewModel.name).textFieldStyle(DefaultTextFieldStyle()).autocorrectionDisabled()
 
@@ -23,11 +23,13 @@ struct RegisterView: View {
 
                 SecureField("Password", text: $viewModel.password).textFieldStyle(DefaultTextFieldStyle())
 
-                TLButton(title: "Create Account", background: .orange) {
+                TLButton(title: "Create Account", background: .teal) {
                     viewModel.language = selectedLanguage == .english ? "en-US" : "ar-SA"
                     viewModel.register()
                 }
+                
             }
+            .padding(.top, -160)
         }
 
         Picker("Language", selection: $selectedLanguage) {
@@ -35,7 +37,7 @@ struct RegisterView: View {
                 Text(language.rawValue.capitalized)
             }
         }.pickerStyle(.segmented)
-            .padding(.bottom, 20)
+            .padding(.bottom, 50)
     }
 }
 

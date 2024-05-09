@@ -22,7 +22,7 @@ struct HeaderView: View {
             VStack {
                 Text(title)
                     .font(.system(size: 50))
-                    .foregroundColor(Color.black)
+                    .foregroundColor(Color.white)
                     .bold()
                 Text(subtitle)
                     .font(.system(size: 30))
@@ -37,5 +37,5 @@ struct HeaderView: View {
 }
 
 #Preview {
-    HeaderView(title: "Title", subtitle: "Subtitle", angle: 15, background: .blue)
+    HeaderView(title: "Title", subtitle: "Subtitle", angle: 0, background: .blue)
 }

@@ -39,28 +39,25 @@ struct SoundboardView: View {
 
                     TabView {
                         if items.count != 0 {
-//                            ForEach(items, id: \.self) { itemGroup in
-//                                ZStack {
-//                                    RoundedRectangle(cornerRadius: 15)
-                               //     .frame(width: 380, height: 400)
-//                                    .foregroundColor(.mint)
+//                          ForEach(items, id: \.self) { itemGroup in
+//                              ZStack {
+//                                  RoundedRectangle(cornerRadius: 15)
+//                                  .frame(width: 380, height: 400)
+//                                  .foregroundColor(.mint)
                             
 //text box
                             Grid {
                                 ScrollView(.horizontal) {
-                                                                    
-
-                                                                    
-                                //soundcards
-                                                LazyHGrid(rows: qrows) {
-                                                    ForEach(Array(queue.enumerated()), id: \.element) { index, element in
-                                                    SoundboardItemView(item: element, language: language){
-                                                        queue.remove(at: index)
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            .scrollTargetLayout()
+//soundcards
+                                LazyHGrid(rows: qrows) {
+                                    ForEach(Array(queue.enumerated()), id: \.element) { index, element in
+                                    SoundboardItemView(item: element, language: language){
+                                        queue.remove(at: index)
+                                            }
+                                        }
+                                    }
+                                }
+                            .scrollTargetLayout()
 
                                 
 //clear button
