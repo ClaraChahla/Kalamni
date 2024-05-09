@@ -14,7 +14,8 @@ This application will have features such as:
 ![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/0d852535-3ac9-4c20-8f51-54a8a3266060)
 
 # Soundboard Home
-![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/e02e42d3-9139-4f81-ae44-b4f9f6fa9ec3)
+![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/e02e42d3-9139-4f81-ae44-b4f9f6fa9ec3) ![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/3c953f38-34bb-4bd0-b65b-2695a58b8839)
+
 
 # Messages
 ![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/7b2ff701-05b6-4680-8af4-476c0df9f292) ![image](https://github.com/ClaraChahla/Kalamni/assets/91515439/f94cedc0-c8b9-40be-a234-038842eab2b9)
