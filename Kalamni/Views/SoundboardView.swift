@@ -13,10 +13,13 @@ struct SoundboardView: View {
     @StateObject var viewModel:SoundboardViewViewModel
     var items: [SoundboardItem]
     @State var queue: [SoundboardItem]
-
+    @State var sb: [SoundboardItem]
+    @State private var selectedCategory: Category = .all
+    
     init(userID: String) {
         self._viewModel = StateObject(wrappedValue: SoundboardViewViewModel(userID: userID))
         self.items = SoundboardItem.sampleData
+        self.sb = self.items
         self.queue = []
 //        print(UIScreen.main.bounds.width)
 //        print(UIScreen.main.bounds.height)
@@ -28,7 +31,7 @@ struct SoundboardView: View {
 //        GridItem(.adaptive(minimum: 60))
 //    ]
 //    
-    let rows = Array(repeating: GridItem(.fixed(85)), count: 3)
+    let rows = Array(repeating: GridItem(.fixed(85)), count: 4)
     let qrows = Array(repeating: GridItem(.fixed(85)), count: 1)
 
     
@@ -47,68 +50,103 @@ struct SoundboardView: View {
                             
 //text box
                             Grid {
+                                Spacer()
+                                    .padding()
                                 ScrollView(.horizontal) {
-//soundcards
-                                LazyHGrid(rows: qrows) {
-                                    ForEach(Array(queue.enumerated()), id: \.element) { index, element in
-                                    SoundboardItemView(item: element, language: language){
-                                        queue.remove(at: index)
+                                    //selected soundcards
+                                    LazyHGrid(rows: qrows) {
+                                        ForEach(Array(queue.enumerated()), id: \.element) { index, element in
+                                            SoundboardItemView(item: element, language: language){
+                                                queue.remove(at: index)
                                             }
                                         }
+                                        .padding(.leading, -18)
+                                        .padding(.trailing, -18)
+                                        .padding(.top, 0)
+                                        .padding(.bottom, -5)
                                     }
+                                    
                                 }
-                            .scrollTargetLayout()
-
+                                .frame(width: 350, height: 90)
+                                .background(Color.gray.opacity(0.1))
+//                                .foregroundColor(.black).opacity(0.4)
+//                                .border(Color.teal, width: 2)
+//                                .shadow(radius: 1)
+//                                .offset(x: 0, y: 10)
+                                .scrollTargetLayout()
+                                
                                 
 //clear button
                                 VStack {
-                                    Button("Clear") {
-                                        queue.removeAll()
-                                    }
-                                    .foregroundColor(.black).opacity(0.6)
-                                    .accentColor(.teal)
-                                    .font(.system(size: 30))
-                                    .bold()
-                                    .buttonStyle(.borderedProminent)
-                                    //.offset(x: -35, y: -242)
-                                }
-                                
+                                    HStack{
+                                        Button("Clear", systemImage: "trash") {
+                                            queue.removeAll()
+                                        }
+                                        .foregroundColor(.black).opacity(0.6)
+                                        .accentColor(.teal)
+                                        .font(.system(size: 29))
+                                        .bold()
+                                        .buttonStyle(.borderedProminent)
+                                        .padding()
+                                    
+                                    
 //speak button
-                                VStack {
-                                    Button("Speak") {
+                                    Button("Speak", systemImage: "play.circle") {
                                         viewModel.playQueue(queue: queue)
                                     }
                                     .foregroundColor(.black).opacity(0.6)
                                     .accentColor(.teal)
-                                    .font(.system(size: 30))
+                                    .font(.system(size: 31))
                                     .bold()
-                                    .contentShape(Circle())
+//                                    .contentShape(Circle())
                                     .buttonStyle(.borderedProminent)
-
-                                    //.offset(x: 110, y: -299)
+                                    .padding()
                                 }
-                            
-                            
-ScrollView(.horizontal) {
+                            }
+                                
+                                
+                                
+                                Picker("Category", selection: $selectedCategory) {
+                                    ForEach(Category.allCases) { category in
+                                        Text(category.rawValue.capitalized)
+                                            .foregroundColor(.teal)
+                                            .font(.system(size: 25))
+                                    }
+                                }
+                                .pickerStyle(.wheel)
+                                .frame(height: 100)
+                                .onChange(of: selectedCategory) {
+                                    if selectedCategory == Category.all {
+                                        sb = items
+                                    } else {
+                                        sb.removeAll()
+                                        items.forEach { item in
+                                            if item.category == selectedCategory.rawValue {
+                                                sb.append(item)
+                                            }
+                                        }
+                                    }
                                     
+                                }
 
-                                    
+
+                                ScrollView(.horizontal) {
 //soundcards
-                LazyHGrid(rows: rows) {
-                    ForEach(items, id: \.self) { item in
-                    SoundboardItemView(item: item, language: language){
-                        queue.append(item)
-                    }
-                    .padding(.bottom, -15)
-                    .padding(.leading, -15)
-                    .padding(.trailing, -15)
-                    .containerRelativeFrame(.horizontal, count: verticalSizeClass == .regular ? 3 : 5, spacing: 16)
-                
-                        }
-                    }
-                }
-            .scrollTargetLayout()
-//                                }
+                                    
+                                    LazyHGrid(rows: rows) {
+                                        ForEach(sb, id: \.self) { item in
+                                        SoundboardItemView(item: item, language: language){
+                                            queue.append(item)
+                                        }
+                                        .padding(.bottom, -15)
+                                        .padding(.leading, -15)
+                                        .padding(.trailing, -15)
+                                        .containerRelativeFrame(.horizontal, count: verticalSizeClass == .regular ? 3 : 5, spacing: 16)
+                                
+                                        }
+                                    }
+                                }
+                                .scrollTargetLayout()
                             }
                         } else {
                             ZStack {

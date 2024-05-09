@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7A2E77B92B9A6A0F005DB6A6 /* Language.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A2E77B82B9A6A0F005DB6A6 /* Language.swift */; };
+		7A3FA4F02BEC95C600CCE384 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A3FA4EF2BEC95C600CCE384 /* Category.swift */; };
 		7A863A442B816765006C669D /* KalamniApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A863A432B816765006C669D /* KalamniApp.swift */; };
 		7A863A462B816765006C669D /* MainView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A863A452B816765006C669D /* MainView.swift */; };
 		7A863A482B816768006C669D /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7A863A472B816768006C669D /* Assets.xcassets */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		7A2E77B82B9A6A0F005DB6A6 /* Language.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Language.swift; sourceTree = "<group>"; };
+		7A3FA4EF2BEC95C600CCE384 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		7A863A402B816765006C669D /* Kalamni.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Kalamni.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7A863A432B816765006C669D /* KalamniApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KalamniApp.swift; sourceTree = "<group>"; };
 		7A863A452B816765006C669D /* MainView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainView.swift; sourceTree = "<group>"; };
@@ -142,6 +144,7 @@
 				7AF50A1E2B86759F00AC7793 /* MessageItem.swift */,
 				7A2E77B82B9A6A0F005DB6A6 /* Language.swift */,
 				7AF50A202B86766700AC7793 /* SoundboardItem.swift */,
+				7A3FA4EF2BEC95C600CCE384 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 				7A863A582B816938006C669D /* Extensions.swift in Sources */,
 				7AF50A3F2B86874F00AC7793 /* SoundboardItemViewViewModel.swift in Sources */,
 				7AF50A352B867ED100AC7793 /* ProfileViewViewModel.swift in Sources */,
+				7A3FA4F02BEC95C600CCE384 /* Category.swift in Sources */,
 				7AF50A232B86798700AC7793 /* LoginView.swift in Sources */,
 				7AF50A212B86766700AC7793 /* SoundboardItem.swift in Sources */,
 				7A2E77B92B9A6A0F005DB6A6 /* Language.swift in Sources */,
